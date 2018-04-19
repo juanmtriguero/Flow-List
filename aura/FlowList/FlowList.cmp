@@ -1,0 +1,24 @@
+<aura:component controller="FlowListController" implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global">
+    <aura:attribute name="flows" type="Flow__c[]" />
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+    <div class="slds-card">
+        <div class="slds-card__header slds-grid">
+        	<h1 class="slds-text-heading_large">Flow list</h1>
+        </div>
+        <div class="slds-card__body slds-card__body_inner">
+            <aura:iteration items="{!v.flows}" var="flow">
+                <div class="slds-section">
+                    <h3 class="slds-section__title">
+                        <button aria-controls="content" class="slds-button slds-section__title-action" onclick="{!c.toggle}">
+                            <lightning:icon iconName="utility:switch" size="xx-small" />
+                            <span class="slds-truncate" title="Section Title">&nbsp;{!flow.Name}</span>
+                        </button>
+                    </h3>
+                    <div aria-hidden="true" class="slds-section__content" id="content">
+                        <c:FlowListElement flow="{!flow}" />
+                    </div>
+                </div>
+            </aura:iteration>
+        </div>
+    </div>
+</aura:component>
